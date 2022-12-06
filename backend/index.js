@@ -1,3 +1,4 @@
+require("dotenv").config()
 const express = require("express")
 const mysql = require("mysql2")
 const bodyParser = require("body-parser")
@@ -26,19 +27,20 @@ app.use(function (req, res, next) {
 })
 
 const hosts = {
-  webserver: config.webserver.host + config.webserver.port,
-  api: config.api.host + config.api.port,
-  db: config.db.host + config.db.port,
+  webserver:
+    process.env.WEBSERVER_HOST + ":" + process.env.WEBSERVER_PORT,
+  api: process.env.API_HOST + ":" + process.env.API_PORT,
+  db: process.env.DB_HOST + ":" + process.env.DB_PORT,
 }
 
 const corsOptions = {
   origin: hosts.webserver,
 }
 const db = mysql.createConnection({
-  host: "localhost",
-  port: "3306",
-  user: "root",
-  password: "1234",
+  host: process.env.DB_HOST,
+  port: process.env.DB_PORT,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
   database: "projectdatabase",
 })
 
@@ -896,6 +898,8 @@ app.post("/professor", cors(corsOptions), (req, res) => {
     res.json(err.message)
   }
 })
-app.listen(5002, () => {
-  console.log("Connected to backend at port 5002")
+
+var port = process.env.API_PORT || 3000
+app.listen(port, () => {
+  console.log("Connected to backend at port " + port)
 })
