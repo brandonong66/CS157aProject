@@ -15,7 +15,7 @@ function NewClass() {
     axios.get(`${hosts.api}/course`).then((response) => {
       setCourses(response.data)
     })
-  }, [professors, courses])
+  }, [])
 
   return (
     <Card border="dark" style={{ margin: "1rem", padding: "1rem" }}>

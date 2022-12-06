@@ -25,7 +25,7 @@ function NewAssignment() {
     axios.get(`${hosts.api}/topic`).then((response) => {
       setTopics(response.data)
     })
-  })
+  }, [])
 
   const handleChange = (event) => {
     if (event.target.checked) {

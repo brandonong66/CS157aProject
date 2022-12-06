@@ -27,12 +27,8 @@ app.use(function (req, res, next) {
 })
 
 const hosts = {
-  webserver:
-    process.env.WEBSERVER_HOST,
-  api: process.env.API_HOST + ":" + process.env.PORT,
-  db: process.env.DB_HOST + ":" + process.env.DB_PORT,
+  webserver: process.env.WEBSERVER_HOST,
 }
-
 
 const db = mysql.createConnection({
   host: process.env.DB_HOST,
@@ -72,7 +68,7 @@ app.get("/", (req, res) => {
 //     res.json(err.message)
 //   }
 // })
-app.get("/notes",  (req, res) => {
+app.get("/notes", (req, res) => {
   try {
     var student_id
     var mysql_query
@@ -126,7 +122,7 @@ app.get("/notes",  (req, res) => {
     res.json(err.message)
   }
 })
-app.post("/notes",  (req, res) => {
+app.post("/notes", (req, res) => {
   try {
     if (!req.body.student_id) {
       throw new Error("Error: please specify student_id")
@@ -171,7 +167,7 @@ app.put("/notes", (req, res) => {
     res.json(err.message)
   }
 })
-app.delete("/notes",  (req, res) => {
+app.delete("/notes", (req, res) => {
   try {
     if (!req.query.notes_id) {
       throw new Error("Error: please specify notes_id")
@@ -186,7 +182,7 @@ app.delete("/notes",  (req, res) => {
     res.json(err.message)
   }
 })
-app.get("/class",  (req, res) => {
+app.get("/class", (req, res) => {
   try {
     var mysql_query
     if (!req.query.student_id) {
@@ -219,7 +215,7 @@ app.get("/class",  (req, res) => {
     res.json(err.message)
   }
 })
-app.post("/class",  (req, res) => {
+app.post("/class", (req, res) => {
   try {
     if (!req.body.location) {
       throw new Error("Error: please specify location")
@@ -260,7 +256,7 @@ app.post("/class",  (req, res) => {
   }
 })
 
-app.get("/class-enrollment",  (req, res) => {
+app.get("/class-enrollment", (req, res) => {
   try {
     if (req.query.student_id) {
       var mysql_query = `SELECT * from Class_Enrollment WHERE Student_Id = ?`
@@ -279,7 +275,7 @@ app.get("/class-enrollment",  (req, res) => {
     res.json(err.message)
   }
 })
-app.post("/class-enrollment",  (req, res) => {
+app.post("/class-enrollment", (req, res) => {
   try {
     if (!req.body.student_id) {
       throw new Error("Error: please specify student_id")
@@ -300,7 +296,7 @@ app.post("/class-enrollment",  (req, res) => {
     res.json(err.message)
   }
 })
-app.delete("/class-enrollment",  (req, res) => {
+app.delete("/class-enrollment", (req, res) => {
   try {
     if (!req.query.student_id) {
       throw new Error("Error: please specify student_id")
@@ -322,7 +318,7 @@ app.delete("/class-enrollment",  (req, res) => {
     res.json(err.message)
   }
 })
-app.get("/course",  (req, res) => {
+app.get("/course", (req, res) => {
   try {
     var mysql_query
     if (!req.query.course_id) {
@@ -363,7 +359,7 @@ app.post("/course", (req, res) => {
     res.json(err.message)
   }
 })
-app.get("/exam",  (req, res) => {
+app.get("/exam", (req, res) => {
   try {
     var mysql_query
     if (!req.query.student_id) {
@@ -395,7 +391,7 @@ app.get("/exam",  (req, res) => {
     res.json(err.message)
   }
 })
-app.post("/exam",  (req, res) => {
+app.post("/exam", (req, res) => {
   try {
     if (!req.body.class_id) {
       throw new Error("Error: please specify class_id")
@@ -547,7 +543,7 @@ app.post("/exam",  (req, res) => {
     res.json(err.message)
   }
 })
-app.delete("/exam",  (req, res) => {
+app.delete("/exam", (req, res) => {
   try {
     if (!req.query.exam_id) {
       throw new Error("Error: please specify exam_id")
@@ -590,7 +586,7 @@ app.delete("/exam",  (req, res) => {
     res.json(err.message)
   }
 })
-app.get("/assignment",  (req, res) => {
+app.get("/assignment", (req, res) => {
   try {
     var mysql_query
     if (!req.query.student_id) {
@@ -622,7 +618,7 @@ app.get("/assignment",  (req, res) => {
     res.json(err.message)
   }
 })
-app.post("/assignment",  (req, res) => {
+app.post("/assignment", (req, res) => {
   try {
     if (!req.body.class_id) {
       throw new Error("Error: please specify class_id")
@@ -740,7 +736,7 @@ app.post("/assignment",  (req, res) => {
   }
 })
 
-app.delete("/assignment",  (req, res) => {
+app.delete("/assignment", (req, res) => {
   try {
     if (!req.query.assignment_id) {
       throw new Error("Error: please specify assignment_id")
@@ -796,7 +792,7 @@ app.get("/topic", (req, res) => {
     res.json(err.message)
   }
 })
-app.post("/topic",  (req, res) => {
+app.post("/topic", (req, res) => {
   try {
     if (!req.body.topic_name) {
       throw new Error("Error: please specify topic_name")
@@ -811,7 +807,7 @@ app.post("/topic",  (req, res) => {
     res.json(err.message)
   }
 })
-app.get("/student",  (req, res) => {
+app.get("/student", (req, res) => {
   try {
     var mysql_query
     if (!req.query.student_id) {
@@ -827,7 +823,7 @@ app.get("/student",  (req, res) => {
     res.json(err.message)
   }
 })
-app.post("/student",  (req, res) => {
+app.post("/student", (req, res) => {
   try {
     if (!req.body.student_name) {
       throw new Error("Error: please specify a student_name")
@@ -852,7 +848,7 @@ app.post("/student",  (req, res) => {
   }
 })
 
-app.get("/professor",  (req, res) => {
+app.get("/professor", (req, res) => {
   try {
     var mysql_query
     if (!req.query.professor_id) {
@@ -868,7 +864,7 @@ app.get("/professor",  (req, res) => {
     res.json(err.message)
   }
 })
-app.post("/professor",  (req, res) => {
+app.post("/professor", (req, res) => {
   try {
     if (!req.body.professor_name) {
       throw new Error("Error: please specify professor_name")
