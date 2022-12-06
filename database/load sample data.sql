@@ -1,6 +1,8 @@
 use projectdatabase;
 
-insert into Student (Student_Id, Student_Name) values (1, "John Doe");
+insert into Student (Student_Id, Student_Name, Student_Password) values
+(1, "John Doe", "1234"),
+(2, "Jane Doe", "1234");
 
 insert into Professor (Professor_Id, Professor_Name, Professor_Email, Office_Hours) values
 (1, "Jahan Ghofraniha", "jahan.ghofraniha@sjsu.edu", "M-W 10:15 – 11:00 am or through zoom by appointments Zoom link: https://sjsu.zoom.us/j/6478341917 "),
@@ -17,11 +19,12 @@ insert into Class (Class_Id, Location, Meeting_Day, Start_Time, End_Time, Profes
 (2, "Macquarrie Hall 223", "Monday Wednesday", '15:00:00', '16:15:00', 2, 2, 2),
 (3, "Macquarrie Hall 233", "Tuesday Thursday", '10:30:00', '11:45:00', 3, 3, 1);
 
-insert into Notes (Notes_Id, Notes_Content, Student_Id, Class_Id, Topic_Id) values
-(1, "Notes on physical design", 1, 1, 1),
-(2, "Notes on php", 1, 2, 5),
-(3, "Notes on Normalization", 1, 1, 3),
-(4, "Notes on sequence data types", 1, 3, 6);
+insert into Notes (Notes_Id, Notes_Content, Student_Id,  Topic_Id) values
+(1, " John's notes on physical design", 1, 1),
+(2, "John's notes on php", 1, 5),
+(3, "Jane's notes on Normalization", 2, 3),
+(4, "Jane's notes on sequence data types", 2, 6),
+(5, "John's notes on logical design", 1, 2);
 
 insert into Exam (Exam_Id, Exam_Date, Exam_Name, Class_Id) values
 (1, '2022-12-12', "Final", 1),
@@ -41,17 +44,23 @@ insert into Assignment (Assignment_Id, Assignment_Due_Date, Assignment_Type, Ass
 (1, '2022-12-05', "Homework", "NoSQL Homework",1),
 (2, '2022-12-06', 'Project', 'Database Design Project', 1),
 (3, '2022-12-05', "Homework", "Homework 5", 2);
-insert into Assignment_Topic (Assignment_Topic_Id, Assignment_Id, Topic_Id) values
-(1, 1, 4),
-(2, 2, 1),
-(3, 2, 2),
-(4, 2, 3),
-(5, 3, 5);
-insert into Exam_Topic (Exam_Topic_Id, Exam_Id, Topic_Id) values
-(1, 1, 1),
-(2, 1, 2),
-(3, 1, 3),
-(4, 1, 4),
-(5, 2, 6),
-(6, 2, 7),
-(7, 3, 3);
+insert into Assignment_Topic (Assignment_Id, Topic_Id) values
+(1, 4),
+(2, 1),
+(2, 2),
+(2, 3),
+(3, 5);
+insert into Exam_Topic (Exam_Id, Topic_Id) values
+(1, 1),
+(1, 2),
+(1, 3),
+(1, 4),
+(2, 6),
+(2, 7),
+(3, 3);
+
+insert into Class_Enrollment (Class_Id, Student_Id) values
+(1, 1),
+(1, 2),
+(2, 1),
+(3, 2);
