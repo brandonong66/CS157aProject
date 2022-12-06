@@ -18,7 +18,7 @@ app.use(
 )
 app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*")
-  res.header("Access-Control-Allow-Methods", "GET, PUT, POST, DELETE, OPTIONS")
+  res.header("Access-Control-Allow-Methods", "GET, PUT, POST, DELETE")
   res.header(
     "Access-Control-Allow-Headers",
     "Origin, X-Requested-With, Content-Type, Accept, Authorization"
@@ -146,7 +146,7 @@ app.post("/notes", (req, res) => {
     res.json(err.message)
   }
 })
-app.put("/notes", (req, res) => {
+app.put("/notes", cors(), (req, res) => {
   try {
     if (!req.body.notes_content) {
       throw new Error("Error: please specify notes_content")
