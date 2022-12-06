@@ -31,7 +31,7 @@ function NotesBox({ notes }) {
           console.log(response.data)
         })
     } else {
-      axios.put(`${hosts.api}/notes`, updatedNotesData).then((response) => {
+      axios.post(`${hosts.api}/notes/update`, updatedNotesData).then((response) => {
         console.log(response.data)
       })
     }

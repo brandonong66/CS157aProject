@@ -146,7 +146,7 @@ app.post("/notes", (req, res) => {
     res.json(err.message)
   }
 })
-app.put("/notes", cors(), (req, res) => {
+app.post("/notes/update", (req, res) => {
   try {
     if (!req.body.notes_content) {
       throw new Error("Error: please specify notes_content")
