@@ -28,14 +28,12 @@ app.use(function (req, res, next) {
 
 const hosts = {
   webserver:
-    process.env.WEBSERVER_HOST + ":" + process.env.WEBSERVER_PORT,
+    process.env.WEBSERVER_HOST,
   api: process.env.API_HOST + ":" + process.env.PORT,
   db: process.env.DB_HOST + ":" + process.env.DB_PORT,
 }
 
-const corsOptions = {
-  origin: hosts.webserver,
-}
+
 const db = mysql.createConnection({
   host: process.env.DB_HOST,
   port: process.env.DB_PORT,
@@ -74,7 +72,7 @@ app.get("/", (req, res) => {
 //     res.json(err.message)
 //   }
 // })
-app.get("/notes", cors(corsOptions), (req, res) => {
+app.get("/notes",  (req, res) => {
   try {
     var student_id
     var mysql_query
@@ -128,7 +126,7 @@ app.get("/notes", cors(corsOptions), (req, res) => {
     res.json(err.message)
   }
 })
-app.post("/notes", cors(corsOptions), (req, res) => {
+app.post("/notes",  (req, res) => {
   try {
     if (!req.body.student_id) {
       throw new Error("Error: please specify student_id")
@@ -152,7 +150,7 @@ app.post("/notes", cors(corsOptions), (req, res) => {
     res.json(err.message)
   }
 })
-app.put("/notes", cors(corsOptions), (req, res) => {
+app.put("/notes", (req, res) => {
   try {
     if (!req.body.notes_content) {
       throw new Error("Error: please specify notes_content")
@@ -173,7 +171,7 @@ app.put("/notes", cors(corsOptions), (req, res) => {
     res.json(err.message)
   }
 })
-app.delete("/notes", cors(corsOptions), (req, res) => {
+app.delete("/notes",  (req, res) => {
   try {
     if (!req.query.notes_id) {
       throw new Error("Error: please specify notes_id")
@@ -188,7 +186,7 @@ app.delete("/notes", cors(corsOptions), (req, res) => {
     res.json(err.message)
   }
 })
-app.get("/class", cors(corsOptions), (req, res) => {
+app.get("/class",  (req, res) => {
   try {
     var mysql_query
     if (!req.query.student_id) {
@@ -221,7 +219,7 @@ app.get("/class", cors(corsOptions), (req, res) => {
     res.json(err.message)
   }
 })
-app.post("/class", cors(corsOptions), (req, res) => {
+app.post("/class",  (req, res) => {
   try {
     if (!req.body.location) {
       throw new Error("Error: please specify location")
@@ -262,7 +260,7 @@ app.post("/class", cors(corsOptions), (req, res) => {
   }
 })
 
-app.get("/class-enrollment", cors(corsOptions), (req, res) => {
+app.get("/class-enrollment",  (req, res) => {
   try {
     if (req.query.student_id) {
       var mysql_query = `SELECT * from Class_Enrollment WHERE Student_Id = ?`
@@ -281,7 +279,7 @@ app.get("/class-enrollment", cors(corsOptions), (req, res) => {
     res.json(err.message)
   }
 })
-app.post("/class-enrollment", cors(corsOptions), (req, res) => {
+app.post("/class-enrollment",  (req, res) => {
   try {
     if (!req.body.student_id) {
       throw new Error("Error: please specify student_id")
@@ -302,7 +300,7 @@ app.post("/class-enrollment", cors(corsOptions), (req, res) => {
     res.json(err.message)
   }
 })
-app.delete("/class-enrollment", cors(corsOptions), (req, res) => {
+app.delete("/class-enrollment",  (req, res) => {
   try {
     if (!req.query.student_id) {
       throw new Error("Error: please specify student_id")
@@ -324,7 +322,7 @@ app.delete("/class-enrollment", cors(corsOptions), (req, res) => {
     res.json(err.message)
   }
 })
-app.get("/course", cors(corsOptions), (req, res) => {
+app.get("/course",  (req, res) => {
   try {
     var mysql_query
     if (!req.query.course_id) {
@@ -344,7 +342,7 @@ app.get("/course", cors(corsOptions), (req, res) => {
     res.json(err.message)
   }
 })
-app.post("/course", cors(corsOptions), (req, res) => {
+app.post("/course", (req, res) => {
   try {
     if (!req.body.course_name) {
       throw new Error("Error: please specify course_name")
@@ -365,7 +363,7 @@ app.post("/course", cors(corsOptions), (req, res) => {
     res.json(err.message)
   }
 })
-app.get("/exam", cors(corsOptions), (req, res) => {
+app.get("/exam",  (req, res) => {
   try {
     var mysql_query
     if (!req.query.student_id) {
@@ -397,7 +395,7 @@ app.get("/exam", cors(corsOptions), (req, res) => {
     res.json(err.message)
   }
 })
-app.post("/exam", cors(corsOptions), (req, res) => {
+app.post("/exam",  (req, res) => {
   try {
     if (!req.body.class_id) {
       throw new Error("Error: please specify class_id")
@@ -549,7 +547,7 @@ app.post("/exam", cors(corsOptions), (req, res) => {
     res.json(err.message)
   }
 })
-app.delete("/exam", cors(corsOptions), (req, res) => {
+app.delete("/exam",  (req, res) => {
   try {
     if (!req.query.exam_id) {
       throw new Error("Error: please specify exam_id")
@@ -592,7 +590,7 @@ app.delete("/exam", cors(corsOptions), (req, res) => {
     res.json(err.message)
   }
 })
-app.get("/assignment", cors(corsOptions), (req, res) => {
+app.get("/assignment",  (req, res) => {
   try {
     var mysql_query
     if (!req.query.student_id) {
@@ -624,7 +622,7 @@ app.get("/assignment", cors(corsOptions), (req, res) => {
     res.json(err.message)
   }
 })
-app.post("/assignment", cors(corsOptions), (req, res) => {
+app.post("/assignment",  (req, res) => {
   try {
     if (!req.body.class_id) {
       throw new Error("Error: please specify class_id")
@@ -742,7 +740,7 @@ app.post("/assignment", cors(corsOptions), (req, res) => {
   }
 })
 
-app.delete("/assignment", cors(corsOptions), (req, res) => {
+app.delete("/assignment",  (req, res) => {
   try {
     if (!req.query.assignment_id) {
       throw new Error("Error: please specify assignment_id")
@@ -787,7 +785,7 @@ app.delete("/assignment", cors(corsOptions), (req, res) => {
     res.json(err.message)
   }
 })
-app.get("/topic", cors(corsOptions), (req, res) => {
+app.get("/topic", (req, res) => {
   try {
     mysql_query = `SELECT * from Topic ORDER BY Topic_Name ASC`
     db.query(mysql_query, (err, data) => {
@@ -798,7 +796,7 @@ app.get("/topic", cors(corsOptions), (req, res) => {
     res.json(err.message)
   }
 })
-app.post("/topic", cors(corsOptions), (req, res) => {
+app.post("/topic",  (req, res) => {
   try {
     if (!req.body.topic_name) {
       throw new Error("Error: please specify topic_name")
@@ -813,7 +811,7 @@ app.post("/topic", cors(corsOptions), (req, res) => {
     res.json(err.message)
   }
 })
-app.get("/student", cors(corsOptions), (req, res) => {
+app.get("/student",  (req, res) => {
   try {
     var mysql_query
     if (!req.query.student_id) {
@@ -829,7 +827,7 @@ app.get("/student", cors(corsOptions), (req, res) => {
     res.json(err.message)
   }
 })
-app.post("/student", cors(corsOptions), (req, res) => {
+app.post("/student",  (req, res) => {
   try {
     if (!req.body.student_name) {
       throw new Error("Error: please specify a student_name")
@@ -854,7 +852,7 @@ app.post("/student", cors(corsOptions), (req, res) => {
   }
 })
 
-app.get("/professor", cors(corsOptions), (req, res) => {
+app.get("/professor",  (req, res) => {
   try {
     var mysql_query
     if (!req.query.professor_id) {
@@ -870,7 +868,7 @@ app.get("/professor", cors(corsOptions), (req, res) => {
     res.json(err.message)
   }
 })
-app.post("/professor", cors(corsOptions), (req, res) => {
+app.post("/professor",  (req, res) => {
   try {
     if (!req.body.professor_name) {
       throw new Error("Error: please specify professor_name")

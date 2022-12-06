@@ -14,7 +14,7 @@ export const HostsContext = createContext()
 
 function App() {
   const hosts = {
-    api: config.api.host + config.api.port,
+    api: process.env.REACT_APP_API_HOST,
     webserver: config.webserver.host + config.webserver.port,
   }
   return (
