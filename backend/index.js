@@ -150,6 +150,9 @@ app.post("/notes", (req, res) => {
     res.json(err.message)
   }
 })
+app.options("/notes", (req, res) => {
+  res.status(200)
+})
 app.put("/notes", (req, res) => {
   try {
     if (!req.body.notes_content) {
