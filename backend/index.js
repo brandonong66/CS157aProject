@@ -7,6 +7,7 @@ const config = require("./config")
 const session = require("express-session")
 
 const app = express()
+app.use(cors())
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(
@@ -146,7 +147,7 @@ app.post("/notes", (req, res) => {
     res.json(err.message)
   }
 })
-app.post("/notes/update", (req, res) => {
+app.put("/notes", cors(), (req, res) => {
   try {
     if (!req.body.notes_content) {
       throw new Error("Error: please specify notes_content")
