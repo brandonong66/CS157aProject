@@ -29,7 +29,7 @@ app.use(function (req, res, next) {
 const hosts = {
   webserver:
     process.env.WEBSERVER_HOST + ":" + process.env.WEBSERVER_PORT,
-  api: process.env.API_HOST + ":" + process.env.API_PORT,
+  api: process.env.API_HOST + ":" + process.env.PORT,
   db: process.env.DB_HOST + ":" + process.env.DB_PORT,
 }
 
@@ -899,7 +899,7 @@ app.post("/professor", cors(corsOptions), (req, res) => {
   }
 })
 
-var port = process.env.API_PORT || 3000
+var port = process.env.PORT || 3000
 app.listen(port, () => {
   console.log("Connected to backend at port " + port)
 })

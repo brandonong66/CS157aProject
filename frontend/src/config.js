@@ -1,7 +1,7 @@
 const config = {
   api: {
     host: "http://localhost:",
-    port: 5002,
+    port: 3000,
   },
   webserver: {
     host: "http://localhost:",
